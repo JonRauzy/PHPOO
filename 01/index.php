@@ -1,6 +1,6 @@
 <?php
-// chargement des dépendances
-require './MaPremiereClass.php';
+    // chargement des dépendances
+    require './MaPremiereClass.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,15 +31,14 @@ require './MaPremiereClass.php';
     <p>echo $affichage -> nomDeLattribut;</p>
 
     <?php
-        echo $class1->premierAttribut;
-        $class1->premierAttribut = "coucou";
-        echo $class1->premierAttribut;
-        $class2->deuxiemeAttribut = 25;
+        echo $class1 -> premierAttribut;
+        $class1 -> premierAttribut = "coucou";
+        echo $class1 -> premierAttribut;
+        $class2 -> deuxiemeAttribut = 25;
         
         // on sait créer des attributs à la volée, c'est dangereux et inutiles, on peut bloquer cette fonctionalitée oui :
         // $class2->troisiemeAttribut = 50; 
         // je laisse en commentaire sinon VS donne un message d'erreur
-
     ?>
 
     <h2>Les premières constante</h2>
