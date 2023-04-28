@@ -1,5 +1,6 @@
 <?php
 
+use Personnage as GlobalPersonnage;
 
 class Personnage{
     // attributs :
@@ -37,6 +38,7 @@ class Personnage{
         $this->setNom($name);
         $this->setType($type);
         $this->setGenre($genre);
+        $this->initPv();
     }
 
 
@@ -124,4 +126,20 @@ class Personnage{
         $this->pointDeVie = $pv;
     }
           
+    protected function lancerDe(int $d = 1){
+        $deLance = null;
+        if($d > 0){
+            for($i=0; $i<$d ; $i++){                   
+                $deLance += mt_rand(1, GlobalPersonnage::NB_FACE_DE);
+            }
+        }
+        return $deLance;
+    }
+
+    protected function initPv(){
+        $toto = $this->lancerDe(3);
+        $pv = $this->getPointDeVie();
+        $pv += $toto;   
+        $this->setPointDeVie($pv);
+    }
 }
