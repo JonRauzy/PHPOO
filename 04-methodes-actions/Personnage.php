@@ -21,7 +21,7 @@ class Personnage{
         'Elf',
         'Orc',
         'Nain',
-        'gobelin'
+        'Gobelin'
     ];
 
     public const ARRAY_GENRE= [
@@ -75,10 +75,13 @@ class Personnage{
 
     public function setGenre(?string $g)
     {
-        $this->genre = $g;
+        if(in_array($g, self::ARRAY_GENRE)){
+            $this->genre = $g;
+        }
     }
 
-    public function getAttaque(): ?string
+
+    public function getAttaque(): ?int
     {
         return $this->attaque;
     }
@@ -120,16 +123,5 @@ class Personnage{
     public function setPointDeVie(?int $pv){
         $this->pointDeVie = $pv;
     }
-  
-
-
-    // fonction publique pour nous dire si un Personnage est vivant ou mort
-    public function isAlive(){
-        if($this->getPointDeVie()<=0){
-            return $this->getNom(). "est mort !";
-        }else{
-            return $this->getNom(). "est vivant et a encore {$this->getPointDeVie()} points de vie !";
-        }
-    }            
-            
+          
 }
