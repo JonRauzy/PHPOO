@@ -1,9 +1,8 @@
 <?php
 
-use function PHPSTORM_META\type;
 
 class Personnage{
-    // attributs
+    // attributs :
 
     protected $type = "Humain";
     protected $nom;
@@ -13,8 +12,10 @@ class Personnage{
     protected $defense = 100;
     protected $dexterite = 100;
 
-    // constantes
+    // constantes :
+
     public const NB_FACE_DE = 12;
+
     public const ARRAY_TYPE = [
         'Humain',
         'Elf',
@@ -23,21 +24,24 @@ class Personnage{
         'gobelin'
     ];
 
+    public const ARRAY_GENRE= [
+        'Masculin',
+        'Feminin',
+        'Youssef',
+        'Non-binaire'
+    ];
 
-
-    
-    
-    public function __construct(string $type, string $name, string $genre="")
+    // contructor :
+    public function __construct(string $type, string $name, string $genre)
     {
         $this->setType($type);
         $this->setNom($name);
         $this->setGenre($genre);
-
     }
 
 
-    // récupère le type au format string ou null (?string)
-    public function getType(): ?string
+    // GET SET :
+    public function getType(): string
     {
         return $this->type;
     }
@@ -50,7 +54,6 @@ class Personnage{
     }
 
 
-    // récupère le nom au format string ou null (?string)
     public function getNom(): string
     {
         return $this->nom;
@@ -64,7 +67,7 @@ class Personnage{
         }
     }
 
-    // récupère le genre au format string ou null (?string)
+    
     public function getGenre(): ?string
     {
         return $this->genre;
@@ -75,13 +78,49 @@ class Personnage{
         $this->genre = $g;
     }
 
+    public function getAttaque(): ?string
+    {
+        return $this->attaque;
+    }
+
+    public function setAttaque(?int $a)
+    {
+        $this->attaque = $a;
+    }
+
+
+    public function getDefense(): ?int
+    {
+        return $this->defense;
+    }
+
+    public function setDefense(?int $d)
+    {
+        $this->defense = $d;
+    }
+
+
+    public function getDexterite(): ?int
+    {
+        return $this->dexterite;
+    }
+
+    public function setDexterite(?int $dex)
+    {
+        $this->dexterite = $dex;
+    }
+    
 
     // récupère les points de vie au format int
-    public function getPointDeVie(): int
+    public function getPointDeVie(): ?int
     {
         return $this->pointDeVie;
     }
 
+    public function setPointDeVie(?int $pv){
+        $this->pointDeVie = $pv;
+    }
+  
 
 
     // fonction publique pour nous dire si un Personnage est vivant ou mort
@@ -91,7 +130,6 @@ class Personnage{
         }else{
             return $this->getNom(). "est vivant et a encore {$this->getPointDeVie()} points de vie !";
         }
-    }
-            
+    }            
             
 }
