@@ -1,5 +1,7 @@
 <?php
 
+use Personnage as GlobalPersonnage;
+
 /**
  * Class Personnage
  *
@@ -28,7 +30,7 @@ class Personnage
     protected $type;
     protected $nom;
     protected $genre;
-    protected $pointDeVie = 1000;
+    protected $pointDeVie = 100;
     protected $attaque = 100;
     protected $defense = 100;
     protected $dexterite = 100;
@@ -69,8 +71,6 @@ class Personnage
             // $this->setDexterite($dexterite);
         }
               
-        
-        // Setters - ou mutators
 
         // le type doit se trouver dans la liste de type ARRAY_TYPE, self:: représente la classe
         public function setType(string $t): void
@@ -101,6 +101,10 @@ class Personnage
             
         }       
 
+        public function setPointDeVie(int $pointDeVie): void {
+            $this->pointDeVie = $pointDeVie;
+        }
+
         public function setAttaque(int $attaque): void
         {
             $this->attaque = $attaque;
@@ -116,9 +120,7 @@ class Personnage
             $this->dexterite = $dexterite;
         }
 
-        public function setPointDeVie(){
-            $this->pointDeVie = initPv();
-        }
+        
 
 
 
@@ -167,6 +169,24 @@ class Personnage
             return $this->dexterite;
         }
 
+        // métaude : 
+        protected function lancerDe(int $d = 1){
+            $deLance = null;
+            if($d > 0){
+                for($i=0; $i<$d ; $i++){                   
+                    $deLance += mt_rand(1, GlobalPersonnage::NB_FACE_DE);
+                }
+            }
+            return $deLance;
+        }
+
+        protected function initPv(){
+            $toto = $this->lancerDe(3);
+            $pv = $this->getPointDeVie();
+            $pv += $toto;   
+            $this->setPointDeVie($pv);
+        }
+
         // Créez une méthode protégée qui va prendre les points de vie (avec le getter) et rajouter 3 lancés de dés
         // en utilisant la constant NB_FACE_DE et mettre à jour les points de vie (avec le setter)
 
@@ -174,11 +194,7 @@ class Personnage
         //     return mt_rand(1, self::NB_FACE_DE);
         // }
 
-        public function initPv(){
-            $pv = $this->getPointDeVie();
-            $pv += mt_rand(1,100);   
-            $this->setPointDeVie($pv);
-        }
+        
 
         
         // Créez une méthode protégée qui va prendre l'attaque (avec le getter) et rajouter OU diminuer (1 chance sur 2) 2
