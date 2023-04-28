@@ -35,7 +35,10 @@
         <input type="submit">
     </form>
     <?php      
-        var_dump($_POST)
+        if(isset($_POST['nom'],$_POST['type'], $_POST['genre'])){
+            $perso1 = new Personnage($_POST['nom'], $_POST['type'], $_POST['genre']);
+        }
+        var_dump($_POST,$perso1);
     ?>
 
 </body>

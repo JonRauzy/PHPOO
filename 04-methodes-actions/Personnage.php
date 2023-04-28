@@ -32,10 +32,10 @@ class Personnage{
     ];
 
     // contructor :
-    public function __construct(string $type, string $name, string $genre)
+    public function __construct(string $name, string $type,string $genre)
     {
-        $this->setType($type);
         $this->setNom($name);
+        $this->setType($type);
         $this->setGenre($genre);
     }
 
