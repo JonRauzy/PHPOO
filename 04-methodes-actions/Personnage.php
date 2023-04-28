@@ -60,123 +60,135 @@ class Personnage
             $this->setNom($name);
             $this->setGenre($gender);
             // appel la méthode protégée qui initialise les points de vie
+            $this->initPV();
             // appel la méthode protégée qui initialise l'attaque
-            // appel la méthode protégée qui initialise la défense
-            // appel la méthode protégée qui initialise la dextérité
+            // $this->setAttaque($attaque);
+            // // appel la méthode protégée qui initialise la défense
+            // $this->setDefense($defense);
+            // // appel la méthode protégée qui initialise la dextérité
+            // $this->setDexterite($dexterite);
         }
-
-        // Créez une méthode protégée qui va prendre les points de vie (avec le getter) et rajouter 3 lancés de dés
-        // en utilisant la constant NB_FACE_DE et mettre à jour les points de vie (avec le setter)
-
-        // Créez une méthode protégée qui va prendre l'attaque (avec le getter) et rajouter OU diminuer (1 chance sur 2) 2
-        // lancés de dés en utilisant la constant NB_FACE_DE et mettre à jour l'attaque (avec le setter)
-
-        // Créez une méthode protégée qui va prendre la défense (avec le getter) et rajouter OU diminuer (1 chance sur 2) 1
-        // lancé de dés en utilisant la constant NB_FACE_DE et mettre à jour la défense (avec le setter)
-
-        // Créez une méthode protégée qui va prendre la dextérité (avec le getter) et rajouter OU diminuer (3 chance sur
-        // 4 pour rajouter) 1 lancé de dés en utilisant la constant NB_FACE_DE et mettre à jour la dextérité (avec le
-        // setter)
-
-
+              
+        
         // Setters - ou mutators
 
-            // le type doit se trouver dans la liste de type ARRAY_TYPE, self:: représente la classe
-            public function setType(string $t): void
-            {
-                // Si le type est dans la liste, on l'accepte.
-                if(in_array($t,self::ARRAY_TYPE)){
-                    $this->type = $t;
-                }
+        // le type doit se trouver dans la liste de type ARRAY_TYPE, self:: représente la classe
+        public function setType(string $t): void
+        {
+            // Si le type est dans la liste, on l'accepte.
+            if(in_array($t,self::ARRAY_TYPE)){
+                $this->type = $t;
             }
-
-            // le nom doit être un string de minimum 3 caractères et maximum 18
-            public function setNom(string $nom): void
-            {
-                // pour ne pas répéter l'exécution du strlen, création d'une variable (bonne pratique, surtout dans
-                // des boucles), $nb contient la longueur de la chaîne $nom
-                $nb = strlen($nom);
-                if($nb >=3 && $nb <=18){
-                    $this->nom = $nom;
-                }
+        }
+        
+        // le nom doit être un string de minimum 3 caractères et maximum 18
+        public function setNom(string $nom): void
+        {
+            // pour ne pas répéter l'exécution du strlen, création d'une variable (bonne pratique, surtout dans
+            // des boucles), $nb contient la longueur de la chaîne $nom
+            $nb = strlen($nom);
+            if($nb >=3 && $nb <=18){
+                $this->nom = $nom;
             }
-
-            // le genre doit se trouver dans la liste de genre ARRAY_GENRE
-            public function setGenre(?string $g): void
-            {
-                if(in_array($g,self::ARRAY_GENRE)){
-                    $this->genre = $g;
-                }
-
+        }
+        
+        // le genre doit se trouver dans la liste de genre ARRAY_GENRE
+        public function setGenre(?string $g): void
+        {
+            if(in_array($g,self::ARRAY_GENRE)){
+                $this->genre = $g;
             }
+            
+        }       
 
+        public function setAttaque(int $attaque): void
+        {
+            $this->attaque = $attaque;
+        }
 
-            public function setPointDeVie(int $pointDeVie): void
-            {
-                $this->pointDeVie = $pointDeVie;
-            }
+        public function setDefense(int $defense): void
+        {
+            $this->defense = $defense;
+        }
 
-            public function setAttaque(int $attaque): void
-            {
-                $this->attaque = $attaque;
-            }
+        public function setDexterite(int $dexterite): void
+        {
+            $this->dexterite = $dexterite;
+        }
 
-            public function setDefense(int $defense): void
-            {
-                $this->defense = $defense;
-            }
-
-            public function setDexterite(int $dexterite): void
-            {
-                $this->dexterite = $dexterite;
-            }
+        public function setPointDeVie(){
+            $this->pointDeVie = initPv();
+        }
 
 
 
 
         // Getters - ou accessors
 
-            // récupère le type au format string ou null (?string)
-            public function getType(): ?string
-            {
-                return $this->type;
-            }
+        // récupère le type au format string ou null (?string)
+        public function getType(): ?string
+        {
+            return $this->type;
+        }
 
-            // récupère le nom au format string ou null (?string)
-            public function getNom(): ?string
-            {
-                return $this->nom;
-            }
+        // récupère le nom au format string ou null (?string)
+        public function getNom(): ?string
+        {
+            return $this->nom;
+        }
 
-            // récupère le genre au format string ou null (?string)
-            public function getGenre(): ?string
-            {
-                return $this->genre;
-            }
+        // récupère le genre au format string ou null (?string)
+        public function getGenre(): ?string
+        {
+            return $this->genre;
+        }
 
-             // récupère les points de vie au format int
-             public function getPointDeVie(): int
-             {
-                 return $this->pointDeVie;
-             }
-
-
-            public function getAttaque(): int
-            {
-                return $this->attaque;
-            }
+        // récupère les points de vie au format int
+        public function getPointDeVie(): int
+        {
+            return $this->pointDeVie;
+        }
 
 
-            public function getDefense(): int
-            {
-                return $this->defense;
-            }
+        public function getAttaque(): int
+        {
+            return $this->attaque;
+        }
 
 
-            public function getDexterite(): int
-            {
-                return $this->dexterite;
-            }
+        public function getDefense(): int
+        {
+            return $this->defense;
+        }
 
+
+        public function getDexterite(): int
+        {
+            return $this->dexterite;
+        }
+
+        // Créez une méthode protégée qui va prendre les points de vie (avec le getter) et rajouter 3 lancés de dés
+        // en utilisant la constant NB_FACE_DE et mettre à jour les points de vie (avec le setter)
+
+        // public function lanceDe(){
+        //     return mt_rand(1, self::NB_FACE_DE);
+        // }
+
+        public function initPv(){
+            $pv = $this->getPointDeVie();
+            $pv += mt_rand(1,100);   
+            $this->setPointDeVie($pv);
+        }
+
+        
+        // Créez une méthode protégée qui va prendre l'attaque (avec le getter) et rajouter OU diminuer (1 chance sur 2) 2
+        // lancés de dés en utilisant la constant NB_FACE_DE et mettre à jour l'attaque (avec le setter)
+        
+        // Créez une méthode protégée qui va prendre la défense (avec le getter) et rajouter OU diminuer (1 chance sur 2) 1
+        // lancé de dés en utilisant la constant NB_FACE_DE et mettre à jour la défense (avec le setter)
+        
+        // Créez une méthode protégée qui va prendre la dextérité (avec le getter) et rajouter OU diminuer (3 chance sur
+        // 4 pour rajouter) 1 lancé de dés en utilisant la constant NB_FACE_DE et mettre à jour la dextérité (avec le
+        // setter)
 
 }
