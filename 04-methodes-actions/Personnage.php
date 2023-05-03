@@ -39,6 +39,8 @@ class Personnage{
         $this->setType($type);
         $this->setGenre($genre);
         $this->initPv();
+        $this->initAttack();
+        $this->initdefense();
     }
 
 
@@ -142,4 +144,41 @@ class Personnage{
         $pv += $toto;   
         $this->setPointDeVie($pv);
     }
+
+    protected function initAttack(){
+        $attack = $this->getAttaque();
+        $de = $this->lancerDe(1);
+        $pa = $this->lancerDe(2);
+        if($de >= 7){
+            $attack += $pa;
+        }else{
+            $attack -= $pa;
+        }
+        $this->setAttaque($attack);
+    }
+
+    protected function initdefense(){
+        $defense = $this->getAttaque();
+        $de = $this->lancerDe(1);
+        $pa = $this->lancerDe(2);
+        if($de >= 7){
+            $defense += $pa;
+        }else{
+            $defense -= $pa;
+        }
+        $this->setDefense($defense);
+    }
+    
+        // Créez une méthode protégée qui va prendre l'attaque (avec le getter) et rajouter OU diminuer (1 chance sur 2) 2
+        // lancés de dés en utilisant la constant NB_FACE_DE et mettre à jour l'attaque (avec le setter)
+
+        // Créez une méthode protégée qui va prendre la défense (avec le getter) et rajouter OU diminuer (1 chance sur 2) 1
+        // lancé de dés en utilisant la constant NB_FACE_DE et mettre à jour la défense (avec le setter)
+
+        // Créez une méthode protégée qui va prendre la dextérité (avec le getter) et rajouter OU diminuer (3 chance sur
+        // 4 pour rajouter) 1 lancé de dés en utilisant la constant NB_FACE_DE et mettre à jour la dextérité (avec le
+        // setter)
+
+
+        // Setters - ou mutators
 }
