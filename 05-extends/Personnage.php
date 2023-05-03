@@ -9,6 +9,7 @@ class Personnage{
     protected $nom;
     protected $genre;
     protected $pointDeVie=1000;
+    protected $puissance = 100;
     protected $attaque = 100;
     protected $defense = 100;
     protected $dexterite = 100;
@@ -39,6 +40,7 @@ class Personnage{
         $this->setType($type);
         $this->setGenre($genre);
         $this->initPv();
+        $this->initPuissance();
         $this->initAttack();
         $this->initdefense();
         $this->initdex();
@@ -128,7 +130,15 @@ class Personnage{
         $this->pointDeVie = $pv;
     }
           
-    
+    public function getPuissance(): ?int
+    {
+        return $this->puissance;
+    }
+
+    public function setPuissance(?int $pui){
+        $this->puissance = $pui;
+    }
+
     protected function lancerDe(int $d = 1){
         $deLance = null;
         if($d > 0){
@@ -176,4 +186,9 @@ class Personnage{
         $this->setDexterite($dex);
     }
     
+    protected function initPuissance(){
+        $pui = $this->getPuissance();
+        mt_rand(0,1) === 0 ? $pui += $this->lancerDe(2) : $pui -= $this->lancerDe(2);      
+        $this->setPuissance($pui);
+    }
 }
