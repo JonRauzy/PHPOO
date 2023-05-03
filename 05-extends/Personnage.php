@@ -3,8 +3,9 @@
 use Personnage as GlobalPersonnage;
 
 class Personnage{
-    // attributs :
 
+
+    // attributs :
     protected $type = "Humain";
     protected $nom;
     protected $genre;
@@ -14,8 +15,8 @@ class Personnage{
     protected $defense = 100;
     protected $dexterite = 100;
 
-    // constantes :
 
+    // constantes :
     public const NB_FACE_DE = 12;
 
     public const ARRAY_TYPE = [
@@ -32,6 +33,7 @@ class Personnage{
         'Youssef',
         'Non-binaire'
     ];
+
 
     // contructor :
     public function __construct(string $name, string $type,string $genre)
@@ -139,6 +141,8 @@ class Personnage{
         $this->puissance = $pui;
     }
 
+
+    // methodes :    
     protected function lancerDe(int $d = 1){
         $deLance = null;
         if($d > 0){
@@ -191,4 +195,5 @@ class Personnage{
         mt_rand(0,1) === 0 ? $pui += $this->lancerDe(2) : $pui -= $this->lancerDe(2);      
         $this->setPuissance($pui);
     }
+    
 }

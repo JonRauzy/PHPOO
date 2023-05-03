@@ -37,9 +37,10 @@
     </form>
     <?php      
         if(isset($_POST['nom'],$_POST['type'], $_POST['genre'])){
-            $perso = new MagePersonnage($_POST['nom'], $_POST['type'], $_POST['genre']);
+            $perso1 = new Personnage($_POST['nom'], $_POST['type'], $_POST['genre']);
+            $perso2 = new MagePersonnage($_POST['nom'], $_POST['type'], $_POST['genre']);
         }
-        var_dump($_POST,$perso);
+        var_dump($_POST,$perso1, $perso2);
     ?>
 
 </body>
