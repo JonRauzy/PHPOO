@@ -20,7 +20,7 @@
         <h2>Guerrier : </h2>
         <label for="name">Nom :</label><br>
         <input type="text" name="nom" id="nom" placeholder="Nom" minlength="3" maxlength="18" required ><br>
-        <label for="type" id="type">Type</label><br>
+        <label for="type" id="type">Type :</label><br>
         <select name="type" id="type">
             <?php
                 foreach(Personnage::ARRAY_TYPE as $type){
@@ -28,7 +28,7 @@
                 }
             ?>
         </select><br>
-        <label for="genre" id="genre" name="genre">Genre</label><br>
+        <label for="genre" id="genre" name="genre">Genre : </label><br>
         <select name="genre" id="genre">
             <?php
                 foreach(Personnage::ARRAY_GENRE as $genre){
@@ -40,7 +40,7 @@
         <h2>Mages : </h2>
         <label for="name">Nom :</label><br>
         <input type="text" name="nomM" id="nomM" placeholder="Nom" minlength="3" maxlength="18" required ><br>
-        <label for="typeM" id="typeM">Type</label><br>
+        <label for="typeM" id="typeM">Type :</label><br>
         <select name="typeM" id="typeM">
             <?php
                 foreach(Personnage::ARRAY_TYPE as $type){
@@ -48,7 +48,7 @@
                 }
             ?>
         </select><br>
-        <label for="genreM" id="genreM" name="genreM">Genre</label><br>
+        <label for="genreM" id="genreM" name="genreM">Genre : </label><br>
         <select name="genreM" id="genreM">
             <?php
                 foreach(Personnage::ARRAY_GENRE as $genre){
@@ -65,15 +65,20 @@
         }
         var_dump($_POST,$guerrier, $mage);
 
-        // on créé des fichiers
-        $filePost = fopen('txt/post.txt', 'a+');
-        $fileMage = fopen('txt/mage.txt', 'a+');
-        $fileGuerrier = fopen('txt/guerrier.txt', 'a+');
+        if(!is_null($mage) && !is_null($guerrier)){
+            var_dump($mage->attaquer($guerrier));
+            var_dump($guerrier->attaquer($mage));
+        }
 
-        // on va écrire dedans :
-        fwrite($filePost, json_encode($_POST));
-        fwrite($fileMage, $mage->getMana());  
-        fwrite($fileGuerrier, json_encode($guerrier));
+        // // on créé des fichiers
+        // $filePost = fopen('txt/post.txt', 'a+');
+        // $fileMage = fopen('txt/mage.txt', 'a+');
+        // $fileGuerrier = fopen('txt/guerrier.txt', 'a+');
+
+        // // on va écrire dedans :
+        // fwrite($filePost, json_encode($_POST));
+        // fwrite($fileMage, $mage->getMana());  
+        // fwrite($fileGuerrier, json_encode($guerrier));
     ?>
 
 </body>

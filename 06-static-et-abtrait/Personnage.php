@@ -2,7 +2,7 @@
 
 use Personnage as GlobalPersonnage;
 
-class Personnage{
+abstract class Personnage{
 
 
     // attributs :
@@ -207,5 +207,8 @@ class Personnage{
         mt_rand(0,1) === 0 ? $pui += $this->lancerDe(2) : $pui -= $this->lancerDe(2);      
         $this->setPuissance($pui);
     }
+
+    // Méthode abstraite : 
+    abstract public function attaquer(Personnage $cible); 
     
 }

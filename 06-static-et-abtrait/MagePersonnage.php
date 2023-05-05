@@ -34,4 +34,16 @@ class MagePersonnage extends Personnage
         mt_rand(0,1) === 0 ? $man += $this->lancerDe(2) : $man -= $this->lancerDe(2);      
         $this->setMana($man);
     }
+
+
+    // redefinir la methode attauqer qui vient du parent personnage (abstract):
+    public function attaquer(Personnage $cible)
+    {
+        $pointAttaque = $this->getPuissance() + $this->getMana();
+        $sortie['attaqueDuCul'] = $pointAttaque;
+        $sortie['attaqueCourante'] = self::lancerDe($this->getDexterite());
+        $sortie ['attaqueTotal'] = $sortie['attaqueDuCul'] + $sortie['attaqueCourante'];
+        return $sortie;
+
+    }
 }
