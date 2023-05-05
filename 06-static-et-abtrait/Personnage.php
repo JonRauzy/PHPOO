@@ -15,6 +15,7 @@ class Personnage{
     protected $attaque = 100;
     protected $defense = 100;
     protected $dexterite = 100;
+    protected $experience = 0;
 
 
     // constantes :
@@ -143,9 +144,18 @@ class Personnage{
         $this->puissance = $pui;
     }
 
+    public function getExperience(): ?int
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(?int $exp){
+        $this->experience = $exp;
+    }
+
 
     // methodes :    
-    public static function lancerDe(int $d = 1){
+    protected function lancerDe(int $d = 1){
         $deLance = null;
         if($d > 0){
             for($i=0; $i<$d ; $i++){                   
