@@ -16,6 +16,7 @@
     <p>On va créer un perso avec un formulaire man</p>
 
     <form action="" method="POST">
+        <h2>Normal : </h2>
         <input type="text" name="nom" id="nom" placeholder="Nom" minlength="3" maxlength="18" required ><br>
         <label for="type" id="type">Type</label><br>
         <select name="type" id="type">
@@ -33,14 +34,32 @@
                 }
             ?>
         </select>
+        <h2>Mages : </h2>
+        <input type="text" name="nomM" id="nomM" placeholder="Nom" minlength="3" maxlength="18" required ><br>
+        <label for="typeM" id="typeM">Type</label><br>
+        <select name="typeM" id="typeM">
+            <?php
+                foreach(Personnage::ARRAY_TYPE as $type){
+                    echo "<option value='$type'>$type</option>";
+                }
+            ?>
+        </select><br>
+        <label for="genreM" id="genreM" name="genreM">Genre</label><br>
+        <select name="genreM" id="genreM">
+            <?php
+                foreach(Personnage::ARRAY_GENRE as $genre){
+                    echo "<option value='$genre'>$genre</option>";
+                }
+            ?>
+        </select>
         <input type="submit">
     </form>
     <?php      
         if(isset($_POST['nom'],$_POST['type'], $_POST['genre'])){
-            $perso1 = new Personnage($_POST['nom'], $_POST['type'], $_POST['genre']);
-            $perso2 = new MagePersonnage($_POST['nom'], $_POST['type'], $_POST['genre']);
+            $perso = new Personnage($_POST['nom'], $_POST['type'], $_POST['genre']);
+            $mage = new MagePersonnage($_POST['nomM'], $_POST['typeM'], $_POST['genreM']);
         }
-        var_dump($_POST,$perso1, $perso2);
+        var_dump($_POST,$perso, $mage);
     ?>
 
 </body>
