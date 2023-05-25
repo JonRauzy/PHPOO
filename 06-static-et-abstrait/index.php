@@ -62,13 +62,14 @@
         if(isset($_POST['nom'],$_POST['type'], $_POST['genre'],$_POST['nomM'], $_POST['typeM'], $_POST['genreM'])){
             $guerrier = new GuerrierPersonnage($_POST['nom'], $_POST['type'], $_POST['genre']);
             $mage = new MagePersonnage($_POST['nomM'], $_POST['typeM'], $_POST['genreM']);
+            var_dump($_POST,$guerrier, $mage);
+            
+            if(!is_null($mage) && !is_null($guerrier)){
+                var_dump($mage->attaquer($guerrier));
+                var_dump($guerrier->attaquer($mage));
+            }
         }
-        var_dump($_POST,$guerrier, $mage);
 
-        if(!is_null($mage) && !is_null($guerrier)){
-            var_dump($mage->attaquer($guerrier));
-            var_dump($guerrier->attaquer($mage));
-        }
 
         // // on créé des fichiers
         // $filePost = fopen('txt/post.txt', 'a+');
