@@ -155,7 +155,8 @@ abstract class Personnage{
 
 
     // methodes :    
-    protected function lancerDe(int $d = 1){
+    // static = on peut utiliser la fonction sans avoir à instancier la class d'abord
+    protected static function lancerDe(int $d = 1){
         $deLance = null;
         if($d > 0){
             for($i=0; $i<$d ; $i++){                   
@@ -163,7 +164,7 @@ abstract class Personnage{
             }
         }
         return $deLance;
-    }
+    }   
 
     protected function initPv(){
         $toto = $this->lancerDe(20);
