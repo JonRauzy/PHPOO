@@ -63,7 +63,8 @@ class Theuser
     }
 
     public function setMailTheUser(string $mailTheUser){
-        $this -> mailTheUser = $mailTheUser;
+        if(filter_var($mailTheUser, FILTER_VALIDATE_EMAIL)===false){
+            $this -> mailTheUser = $mailTheUser;
+        }
     }
-    
 }
