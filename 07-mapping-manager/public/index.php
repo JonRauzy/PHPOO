@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once "../config/config.php";
+require_once "../configuration/config.php";
 
 spl_autoload_register(function($classname){
     $file = '../model/' . str_replace('\\', '/' , $classname) . 'php';
@@ -12,3 +12,4 @@ spl_autoload_register(function($classname){
     }
 });
 
+?>
