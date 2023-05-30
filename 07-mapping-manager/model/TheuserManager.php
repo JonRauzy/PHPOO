@@ -34,7 +34,7 @@ class TheuserManager
         $result = $stmt-> fetchAll();
 
         if($result){
-            $tabTheuser = [];
+            $theusers = [];
             foreach($result as $item){
                 $theusers = new Theuser($item);
             }
