@@ -3,10 +3,10 @@
 session_start();
 
 require_once "../configuration/config.php";
-require "../model/Theuser.php";
+
 
 spl_autoload_register(function($classname){
-    $file = '../' . str_replace('\\', '/' , $classname) . 'php';
+    $file = '../' . str_replace('\\', '/' , $classname) . '.php';
 
     if(file_exists($file)){
         require_once $file;

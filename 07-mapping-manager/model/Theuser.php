@@ -2,6 +2,7 @@
 
 namespace model;
 
+
 //  on veut savoir utiliser exexcpiton : 
 use Exception;
 
