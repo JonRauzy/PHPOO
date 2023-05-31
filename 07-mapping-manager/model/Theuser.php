@@ -2,7 +2,7 @@
 
 namespace model;
 
-
+use PDO;
 //  on veut savoir utiliser exexcpiton : 
 use Exception;
 

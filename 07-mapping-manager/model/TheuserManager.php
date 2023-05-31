@@ -24,7 +24,7 @@ class TheuserManager
         $stmt = $this->pdo->prepare($sql);
         $stmt -> execute();
         $result = $stmt -> fetch();
-        return $result;
+        return new Theuser($result);
     }
 
     public function getAllUser(){
@@ -34,9 +34,9 @@ class TheuserManager
         $result = $stmt-> fetchAll();
 
         if($result){
-            $tabTheuser = [];
-            foreach($result as $item){
-                $theusers = new Theuser($item);
+            $theusers = [];
+            foreach($result as $row){
+                $theusers[] = new Theuser($row);
             }
 
         }

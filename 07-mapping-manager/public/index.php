@@ -15,11 +15,18 @@ spl_autoload_register(function($classname){
 
 
 try {
-    $pdo = new PDO(DB_DRIVER.':host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME.';charset='.DB_CHARSET,DB_NAME,DB_PWD);
-}catch(Exception $e){
-    $e->getMessage();
+    $pdo = new PDO(
+        DB_DRIVER . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET . ';port=' . DB_PORT, DB_USER, DB_PWD,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]
+    );
+} catch (Exception $e) {
+    echo "Erreur de connexion à la base de données : " . $e->getMessage();
+    exit;
 }
 
 require_once '../controller/publicController.php';
 
-$pdo = null;
+// $pdo = null;
