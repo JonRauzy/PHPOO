@@ -20,7 +20,6 @@ use model\TheuserManager;
     ?>
 
     <h3>utilisateur dont l'id vaut 2 : </h3>
-
     <?php
 
     $user = new TheuserManager($pdo);
