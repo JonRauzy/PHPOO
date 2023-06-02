@@ -2,7 +2,7 @@
 
 use model\Theuser;
 use model\TheuserManager;
-use PDO;
+
 
 if(isset($_GET['user']))
 {
