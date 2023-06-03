@@ -2,9 +2,11 @@
 
 namespace model\abstract;
 
-abstract class MappingClassAbstract
+
+abstract class MappingClassAbstract 
 {
-    // les enfants vont hériter de ces propriétés et méthodes
+
+    // les enfants vont hérités ces méthodes, on veut obliger que les enfants implementent ces methodes
 
     // constructeur
     public function __construct(array $datas)
@@ -15,15 +17,14 @@ abstract class MappingClassAbstract
     // hydratation (remplissage des propriétés en utilisant les setters)
     protected function hydrate(array $datas)
     {
-        foreach ($datas as $key => $value) {
+        foreach ($datas as $key => $value) {           
             $method = 'set' . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->$method($value);
+            if (method_exists($this, $method)) {                
+                $this->$method($value);              
             }
         }
     }
 
-    // on veut obligatoirement que les enfants implémentent
-    // la méthode magique __toString()
     abstract public function __toString();
+    
 }

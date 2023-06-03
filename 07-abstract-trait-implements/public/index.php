@@ -1,19 +1,22 @@
 <?php
-// démarre la session
+// Lancement de session
 session_start();
 
-// charge le fichier de configuration
-require_once '../configuration/config.php';
+// constantes de connexion (et autres constantes globales)
+require_once "../configuration/config.php";
 
-// autoload de nos classes depuis la racine PATH_ROOT en suivant l'arborescence
-// des namespaces de nos classes
-spl_autoload_register(
-    function ($className) {
-        $className = str_replace('\\', '/', $className);
-        require_once PATH_ROOT. '/' . $className . '.php';
-    });
+// Autoload de classes (qui portent le même nom que le fichier) ! Gestion des namespaces
+spl_autoload_register(function ($className) {
+    // par exemple si on est dans le dossier public, le str_replace va remplacer les \ des namespaces par des / et on
+    // aura par exemple ../model/Entity.php
+    $file = '../' . str_replace('\\', '/', $className) . '.php';
+    // si le fichier existe, on le charge
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
 
-// connexion à la base de données en PDO
+// connexion à la base de données
 try {
     $pdo = new PDO(
         DB_DRIVER . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET . ';port=' . DB_PORT,
@@ -21,19 +24,20 @@ try {
         DB_PWD,
         [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
-} catch (PDOException $e) {
-    echo 'Erreur de connexion : ' . $e->getMessage();
+} catch (Exception $e) {
+    echo "Erreur de connexion à la base de données : " . $e->getMessage();
+    exit;
 }
 
-// si on est connecté on va sur le contrôleur de l'administration
-if (isset($_SESSION['idsession'])&& $_SESSION['idsession'] == session_id()) {
-    // on charge le contrôleur de l'administration
+
+if(isset($_SESSION['idsession']) && $_SESSION['idsession']===session_id()){
     require_once '../controller/adminController.php';
-
-} else {
-    // sinon on va sur le contrôleur public
-    require_once '../controller/publicController.php';
+}else{
+    require_once "../controller/publicController.php";
 }
+
+// fermeture de la connexion
+$pdo = null;

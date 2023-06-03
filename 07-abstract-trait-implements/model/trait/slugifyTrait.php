@@ -2,15 +2,15 @@
 
 namespace model\trait;
 
-// pour utiliser un trait, on utilise le mot-clé "use" DANS
-// la classe qui va utiliser le trait
+
+
 trait slugifyTrait
 {
-    // méthode qui va slugifier une chaîne de caractères
-    // exemple: "Je suis une chaîne de caractères" devient "je-suis-une-chaine-de-caracteres"
-    public function slugify(string $s):string{
+    // method qui va slugifier une chaine de caractére
+    public function slugify(string $text) : string {
+
         // Strip html tags
-        $text=strip_tags($s);
+        $text=strip_tags($text);
         // Replace non letter or digits by -
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
         // Transliterate
@@ -28,6 +28,8 @@ trait slugifyTrait
         if (empty($text)) { return 'n-a'; }
         // Return result
         return $text;
+        
     }
+    
 
 }
